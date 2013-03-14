@@ -3,8 +3,6 @@
  */
 package com.github.jmkgreen.morphia.query;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Logger;
 
 import org.bson.types.ObjectId;

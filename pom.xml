@@ -19,6 +19,20 @@
 
     <url>http://github.com/jmkgreen/morphia/</url>
 
+
+
+<distributionManagement>
+	<repository>
+		<id>repo</id>
+		<url>https://github.com/bitliner/bitmorphia/raw/master/releases</url>
+	</repository>
+	<snapshotRepository>
+		<id>snapshot-repo</id>
+		<url>https://github.com/cemerick/cemerick-mvn-repo/raw/master/snapshots</url>
+	</snapshotRepository>
+</distributionManagement>
+
+
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
