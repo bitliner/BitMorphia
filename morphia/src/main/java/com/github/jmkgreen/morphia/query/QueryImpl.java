@@ -185,6 +185,10 @@ public class QueryImpl<T> extends CriteriaContainerImpl implements Query<T>, Cri
 
         if (log.isTraceEnabled())
             log.trace("Running query(" + dbColl.getName() + ") : " + query + ", fields:" + fields + ",off:" + offset + ",limit:" + limit);
+        
+        String q="Running query(" + dbColl.getName() + ") : " + query + ", fields:" + fields + ",off:" + offset + ",limit:" + limit+",hint:"+indexHint;
+//        log.info();
+        System.out.println(q);
 
         DBCursor cursor = dbColl.find(query, fields);
         cursor.setDecoderFactory(this.ds.getDecoderFact());
@@ -478,7 +482,15 @@ public class QueryImpl<T> extends CriteriaContainerImpl implements Query<T>, Cri
     }
 
     public String toString() {
-        return this.getQueryObject().toString();
+    	String res="";
+    	res+=dbColl.getName()+" (";
+    	res+=this.getQueryObject().toString()+", ";
+    	res+="{ "+Arrays.toString( fields )+":"+includeFields+"} ).";
+    	res+=(sort!=null)?"sort("+sort+")":"";
+    	res+=(limit!=-1)?".limit("+limit+")":"";
+    	res+=(offset>0)?".offset("+offset+")":"";
+    	res+=".hint("+indexHint+")";
+        return res;
     }
 
     public FieldEnd<? extends Query<T>> field(String name) {
